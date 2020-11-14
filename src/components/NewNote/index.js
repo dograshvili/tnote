@@ -13,7 +13,12 @@ export default class NewNote extends React.Component {
         };
     }
 
-    updateState = state => this.setState(state);
+    updateState = state => this.setState(state)
+
+    componentDidUpdate = () => {
+        console.log('componentDidUpdate');
+        console.log(this.state.data);
+    }
 
     render() {
         const {route, navigation} = this.props;
@@ -23,6 +28,7 @@ export default class NewNote extends React.Component {
         if (type === CustomHelper.VARS.NEW_NOTE.TYPE_TEXT) {
             inner = <TypeText
                         {...this.props}
+                        updateNewNoteState={this.updateState}
                     />;
         } else if (type === CustomHelper.VARS.NEW_NOTE.TYPE_LIST) {
             inner = <Text>{type}</Text>;

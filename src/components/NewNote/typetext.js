@@ -1,106 +1,132 @@
 import * as React from 'react';
-import { View, TextInput, Text, StyleSheet } from 'react-native';
+import { View, TextInput, Alert, StyleSheet } from 'react-native';
 import { Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-const TypeText = props => {
-    const {Theme, updateNewNoteState} = props;
-    return (
-        <View
-            style={{
-                flex: 1,
-                padding: 20
-            }}
-        >
+export default class TypeText extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            title: "",
+            note: ""
+        };
+    }
 
+    setData = () => {
+        const {title, note} = this.state;
+        if (title && note) {
+            this.props.updateNewNoteState({
+                data: {
+                    title: title,
+                    note: note
+                }
+            });
+        } else {
+            Alert.alert("INFO", "You must TITLE and NOTE");
+        }
+    }
 
+    render() {
+        const {route} = this.props;
+        const {Theme} = route.params;
+        return (
             <View
-                style={{
-                    flex: 1,
-                    marginBottom: 15
-                }}
+                style={Styles.ContainerBase}
             >
-                <TextInput
-                    style={{
-                        borderRadius: 5,
-                        borderStyle: "solid",
-                        borderWidth: 1,
-                        borderColor: "white",
-                        color: "white",
-                        height: "100%"
-                    }}
-                    placeholderTextColor="white"
-                    placeholder="Enter note title here..."
-                    keyboardType="default"
-                    selectionColor="skyblue"
-                    returnKeyLabel="search"
-                    autoFocus={true}
-                    onChangeText={title => {}}
+                <View
+                    style={Styles.Container1}
                 >
-                </TextInput>
-            </View>
-
-
-            <View
-                style={{
-                    flex: 9,
-                    marginBottom: 15
-                }}
-            >
-                <TextInput
+                    <TextInput
+                        style={[
+                            Styles.TextInput,
+                            {
+                                borderColor: Theme.type.text.borderColor,
+                                color: Theme.type.text.txtColor
+                            }
+                        ]}
+                        placeholderTextColor={Theme.type.text.plhdTxtColor}
+                        placeholder="Enter note title here..."
+                        keyboardType="default"
+                        selectionColor="skyblue"
+                        returnKeyLabel="search"
+                        autoFocus={true}
+                        onChangeText={title => this.setState({title: title})}
+                    >
+                    </TextInput>
+                </View>
+                <View
                     style={{
-                        borderRadius: 5,
-                        borderStyle: "solid",
-                        borderWidth: 1,
-                        borderColor: "white",
-                        color: "white",
-                        height: "100%",
-                        textAlignVertical: "top"
+                        flex: 9,
+                        marginBottom: 15
                     }}
-                    placeholderTextColor="white"
-                    placeholder="Enter your body here.."
-                    keyboardType="default"
-                    selectionColor="skyblue"
-                    returnKeyLabel="search"
-                    multiline={true}
-                    textBreakStrategy="highQuality"
-                    onChangeText={txt => {}}
                 >
-                </TextInput>
+                    <TextInput
+                        style={[
+                            Styles.TextInput,
+                            {
+                                textAlignVertical: "top",
+                                borderColor: Theme.type.text.borderColor,
+                                color: Theme.type.text.txtColor
+                            }
+                        ]}
+                        placeholderTextColor={Theme.type.text.plhdTxtColor}
+                        placeholder="Enter your note here.."
+                        keyboardType="default"
+                        selectionColor="skyblue"
+                        returnKeyLabel="search"
+                        multiline={true}
+                        textBreakStrategy="highQuality"
+                        onChangeText={txt => this.setState({note: txt})}
+                    >
+                    </TextInput>
+                </View>
+                <View
+                    style={Styles.Container2}
+                >
+                    <Button
+                        onPress={() => this.setData()}
+                        icon={
+                            <Icon
+                                name="floppy-o"
+                                size={20}
+                                color={Theme.type.text.btnIconColor}
+                            />
+                        }
+                        buttonStyle={[
+                            Styles.Button,
+                            {
+                                borderColor: Theme.type.text.btnBorderColor,
+                                backgroundColor: Theme.type.text.btnBgColor
+                            }
+                        ]}
+                    />
+                </View>
             </View>
-
-
-            <View
-                style={{
-                    flex: 1,
-                    flexDirection: "column"
-                }}
-            >
-                <Button
-                    onPress={() => {}}
-                    icon={
-                        <Icon
-                            name="floppy-o"
-                            size={20}
-                            color="white"
-                        />
-                    }
-                    buttonStyle={{
-                        borderStyle: "solid",
-                        borderWidth: 1,
-                        borderColor: "white",
-                        backgroundColor: "black"
-                    }}
-                />
-            </View>
-
-
-
-        </View>
-    )
+        )
+    }
 }
 
 const Styles = StyleSheet.create({
+    ContainerBase: {
+        flex: 1,
+        padding: 20
+    },
+    Container1: {
+        flex: 1,
+        marginBottom: 15
+    },
+    Container2: {
+        flex: 1,
+        flexDirection: "column"
+    },
+    TextInput: {
+        borderRadius: 5,
+        borderStyle: "solid",
+        borderWidth: 1,
+        height: "100%"
+    },
+    Button: {
+        borderStyle: "solid",
+        borderWidth: 1
+    }
 });
-
-export default TypeText;

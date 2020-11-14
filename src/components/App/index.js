@@ -37,6 +37,16 @@ export default class App extends React.Component {
                         txtColor: CustomHelper.COLORS.TERMINAL.TANGO.WHITE,
                         bgColor: CustomHelper.COLORS.TERMINAL.TANGO.BLACK,
                         borderColor: CustomHelper.COLORS.TERMINAL.TANGO.WHITE
+                    },
+                    type: {
+                        text: {
+                            txtColor: CustomHelper.COLORS.TERMINAL.TANGO.WHITE,
+                            borderColor: CustomHelper.COLORS.TERMINAL.TANGO.WHITE,
+                            plhdTxtColor: CustomHelper.COLORS.TERMINAL.TANGO.WHITE,
+                            btnIconColor: CustomHelper.COLORS.TERMINAL.TANGO.WHITE,
+                            btnBgColor: CustomHelper.COLORS.TERMINAL.TANGO.BLACK,
+                            btnBorderColor: CustomHelper.COLORS.TERMINAL.TANGO.WHITE
+                        }
                     }
                 }
             }
