@@ -50,6 +50,8 @@ export default class TypeText extends React.Component {
                         selectionColor="skyblue"
                         returnKeyLabel="search"
                         autoFocus={true}
+                        autoCorrect={false}
+                        spellCheck={false}
                         onChangeText={title => this.setState({title: title})}
                     >
                     </TextInput>
@@ -75,6 +77,8 @@ export default class TypeText extends React.Component {
                         selectionColor="skyblue"
                         returnKeyLabel="search"
                         multiline={true}
+                        autoCorrect={false}
+                        spellCheck={false}
                         textBreakStrategy="highQuality"
                         onChangeText={txt => this.setState({note: txt})}
                     >
