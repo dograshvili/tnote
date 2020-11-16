@@ -2,21 +2,15 @@ import * as React from 'react';
 import { View, Text, SafeAreaView, FlatList, StatusBar, StyleSheet, Pressable } from 'react-native';
 
 export default class Contents extends React.Component {
-    constructor(props) {
-        super(props);
-    }
 
     render() {
-        const {route, navigation} = this.props;
-        const {Theme, notes} = route.params;
+        const {route, navigation, notes} = this.props;
+        const {Theme} = route.params;
         return(
             <View
                 style={Styles.BaseContainer}
             >
-
-
-
-                {/* <SafeAreaView
+                <SafeAreaView
                     style={Styles.SafeAreaViewContainer}
                 >
                     <FlatList
@@ -68,11 +62,7 @@ export default class Contents extends React.Component {
                         }}
                         keyExtractor={item => item.id}
                     />
-                </SafeAreaView> */}
-
-
-
-
+                </SafeAreaView>
             </View>
         )
     }

@@ -6,9 +6,6 @@ import ActionSearch from './actionSearch';
 import ActionSettings from './actionSettings';
 
 export default class Actions extends React.Component {
-    constructor(props) {
-        super(props);
-    }
 
     handleOpenSettings = () => {
         // TODO: Must open settings
@@ -22,11 +19,11 @@ export default class Actions extends React.Component {
     }
 
     handleNewNote = () => {
-        this.props.navigation.navigate("NewNote", {});
+        this.props.navigation.navigate("NewNote");
     }
 
     render() {
-        const {route, navigation} = this.props;
+        const {route} = this.props;
         const {Theme, blOpenSearch} = route.params;
         let inner = (
             <>

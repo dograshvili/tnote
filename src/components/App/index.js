@@ -14,7 +14,6 @@ export default class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            notes: {},
             chosenTheme: "default",
             availableThemes: CustomHelper.THEME.AVAILABLE,
             Themes: {
@@ -58,45 +57,9 @@ export default class App extends React.Component {
     }
 
     fetchNotes = async () => {
-        const notes = [
-            {
-                id: "1",
-                type: "text",
-                dtcreated: "2020-09-10 16:33:18",
-                title: "Super market",
-                contents: "Na min ksexasw na parw ta pragmata apo to super market"
-            },
-            {
-                id: "2",
-                type: "text",
-                dtcreated: "2020-09-15 16:33:18",
-                title: "Metting",
-                contents: "Exw sinantisi me ton boss"
-            },
-            {
-                id: "3",
-                type: "list",
-                dtcreated: "2020-09-25 16:33:18",
-                title: "Super market",
-                contents: [
-                    {
-                        bldone: false,
-                        contents: "Frouta"
-                    },
-                    {
-                        bldone: false,
-                        contents: "Tost Pswmi"
-                    },
-                    {
-                        bldone: false,
-                        contents: "Tost tyri"
-                    }
-                ]
-            }
-        ];
-        this.setState({
-            notes: notes
-        });
+        // this.setState({
+        //     notes: notes
+        // });
     }
 
     updateState = state => this.setState(state)
@@ -121,7 +84,6 @@ export default class App extends React.Component {
                         component={Home}
                         initialParams={{
                             Theme: Theme,
-                            notes: notes,
                             blOpenSearch: false,
                             blMustSearch: false,
                             txtToSearch: ""

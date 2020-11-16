@@ -15,14 +15,13 @@ export default class TypeText extends React.Component {
     setData = () => {
         const {title, note} = this.state;
         if (title && note) {
-            this.props.updateNewNoteState({
-                data: {
-                    title: title,
-                    note: note
-                }
-            });
+            // TODO: N
         } else {
-            Alert.alert("INFO", "You must TITLE and NOTE");
+            if (!title) {
+                Alert.alert("INFO", "You must add a title");
+            } else {
+                Alert.alert("INFO", "You must add a note");
+            }
         }
     }
 

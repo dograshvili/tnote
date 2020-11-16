@@ -4,11 +4,26 @@ import Actions from './actions';
 import Contents from './contents';
 
 export default class Home extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            notes: []
+        };
+    }
+
+    updateState = state => this.setState(state)
+
+    componentDidMount = () => {
+        this.fetchNotes();
+    }
+
+    fetchNotes = async () => {
+
+    }
 
     render() {
-        const {route, navigation} = this.props;
-        const {Theme, blMustSearch, txtToSearch} = route.params;
-        console.log(`blMustSearch = ${blMustSearch}   txtToSearch = ${txtToSearch}`);
+        const {Theme} = this.props.route.params;
+        const {notes} = this.state;
         return(
             <View
                 style={{
@@ -20,6 +35,7 @@ export default class Home extends React.Component {
                     {...this.props}
                 />
                 <Contents
+                    notes={notes}
                     {...this.props}
                 />
             </View>
