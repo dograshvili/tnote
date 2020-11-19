@@ -53,7 +53,7 @@ export default class Contents extends React.Component {
                                                     color: Theme.note.txtColor
                                                 }}
                                             >
-                                                {item.dtcreated}
+                                                {item.date}
                                             </Text>
                                         </View>
                                     </Pressable>
