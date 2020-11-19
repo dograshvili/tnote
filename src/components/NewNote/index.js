@@ -22,6 +22,7 @@ export default class NewNote extends React.Component {
         let inner;
         if (type === CustomHelper.VARS.NEW_NOTE.TYPE_TEXT) {
             inner = <TypeText
+                        updateNewNoteState={this.updateState}
                         {...this.props}
                     />;
         } else if (type === CustomHelper.VARS.NEW_NOTE.TYPE_LIST) {

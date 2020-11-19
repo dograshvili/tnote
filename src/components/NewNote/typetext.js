@@ -2,6 +2,9 @@ import * as React from 'react';
 import { View, TextInput, Alert, StyleSheet } from 'react-native';
 import { Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import moment from 'moment';
+import AsyncStorage from '@react-native-community/async-storage';
+import CustomHelper from '../../static/CustomHelper';
 
 export default class TypeText extends React.Component {
     constructor(props) {
@@ -12,10 +15,26 @@ export default class TypeText extends React.Component {
         };
     }
 
-    setData = () => {
+    setData = async () => {
         const {title, note} = this.state;
         if (title && note) {
-            // TODO: N
+            let data = {
+                date: moment(),
+                type: "text",
+                title: title,
+                note: note
+            };
+            try {
+                let notesSaved = await AsyncStorage.getItem("NOTES").then(data => JSON.parse(data));
+                data['id'] = (notesSaved.length + 1).toString();
+                notesSaved.push(data);
+                await AsyncStorage.setItem("NOTES", JSON.stringify(notesSaved));
+            } catch(err) {
+                Alert.alert("ERROR", `Error while saving data...\nDLERR1020`);
+            }
+            this.props.navigation.navigate("Home", {
+                action: CustomHelper.ACTIONS.REFETCH_NOTES
+            });
         } else {
             if (!title) {
                 Alert.alert("INFO", "You must add a title");

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Button } from 'react-native-elements';
+import CustomHelper from '../../static/CustomHelper';
 
 const ChooseType = props => {
     const {Theme, updateNewNoteState} = props;
@@ -25,7 +26,7 @@ const ChooseType = props => {
                 }}
             >
                 <Button
-                    onPress={() => updateNewNoteState({type: "text"})}
+                    onPress={() => updateNewNoteState({type: CustomHelper.VARS.NEW_NOTE.TYPE_TEXT})}
                     title="text"
                     titleStyle={Styles.ButtonTitle}
                     buttonStyle={[
@@ -37,7 +38,7 @@ const ChooseType = props => {
                     ]}
                 />
                 <Button
-                    onPress={() => updateNewNoteState({type: "list"})}
+                    onPress={() => updateNewNoteState({type: CustomHelper.VARS.NEW_NOTE.TYPE_LIST})}
                     title="list"
                     titleStyle={Styles.ButtonTitle}
                     buttonStyle={[

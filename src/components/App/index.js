@@ -1,5 +1,6 @@
 import 'react-native-gesture-handler';
 import * as React from 'react';
+import {Alert} from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -53,13 +54,22 @@ export default class App extends React.Component {
     }
 
     componentDidMount = () => {
-        this.fetchNotes();
+        this.initNotes();
+    }
+    componentDidUpdate = () => {
+        console.log('Component updated');
     }
 
-    fetchNotes = async () => {
-        // this.setState({
-        //     notes: notes
-        // });
+    initNotes = async () => {
+        try {
+            // await AsyncStorage.removeItem(CustomHelper.VARS.STORAGE.NOTES_KEY);
+            let data = await AsyncStorage.getItem(CustomHelper.VARS.STORAGE.NOTES_KEY).then(data => JSON.parse(data));
+            if (!data) {
+                await AsyncStorage.setItem(CustomHelper.VARS.STORAGE.NOTES_KEY, JSON.stringify([]));
+            }
+        } catch (err) {
+            Alert.alert("ERROR", `Could not initialize notes data storage\nDLERR1000`);
+        }
     }
 
     updateState = state => this.setState(state)
