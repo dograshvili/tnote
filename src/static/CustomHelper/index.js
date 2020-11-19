@@ -1,4 +1,8 @@
 const CustomHelper = {
+    ACTIONS: {
+        NEW_NOTE: "NEW_NOTE",
+        REFETCH_NOTES: "REFRESH"
+    },
     VARS: {
         STORAGE: {
             THEME_KEY: "THEME",
@@ -7,7 +11,7 @@ const CustomHelper = {
         NEW_NOTE: {
             TYPE_TEXT: "text",
             TYPE_LIST: "list"
-        }
+        },
     },
     THEME: {
         AVAILABLE: ["default"],
